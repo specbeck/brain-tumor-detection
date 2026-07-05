@@ -1,0 +1,18 @@
+{
+  "project_name": "Brain Tumor Classification via Localization",
+  "developer_constraints": "CPU-only inference, mixed-plane (sagittal, coronal, axial) uncurated MRI scans without metadata.",
+  "preprocessing_strategy": {
+    "action": "Geometric Extreme-Point Cropping & Soft CLAHE (8x8 tiles).",
+    "justification": "Bypassed standard skull-stripping (like FSL BET) because it frequently misclassifies and strips peripheral Meningiomas. Used Otsu's thresholding for bounding-box crops to remove dead space, followed by CLAHE to mathematically preserve the high-frequency edge gradients of diffuse tumors."
+  },
+  "classical_pipeline_features": {
+    "dimensionality": "163-Dimensional Feature Vector",
+    "components": "GLCM (5 macro-texture), LBP (26 micro-patterns), Global Stats (4), and an 8x8 Spatial Grid (128 localized intensity stats).",
+    "justification": "The 8x8 spatial grid acts like a local receptive field, preventing the global metrics from washing out the signal of small, localized tumors."
+  },
+  "models_and_performance": {
+    "primary_classifier": "Support Vector Machine (RBF Kernel, C=1.0). Achieved 88.19% Test Accuracy and a critical 99% Recall for the 'No Tumor' class.",
+    "secondary_explainer": "Random Forest (150 estimators). Achieved 83.19% Test Accuracy. Used specifically to extract spatial feature importances for Classical Saliency Heatmaps.",
+    "dl_comparison": "CNN architectures were tested but discarded. They suffered from severe spatial bias, learning skull artefacts rather than tumor tissue due to the small dataset size."
+  }
+}
