@@ -8,7 +8,7 @@ from google import genai
 st.set_page_config(page_title="Neuro-oncology AI Assistant", page_icon="🧠", layout="centered")
 
 # Drop your Gemini API key here
-GOOGLE_API_KEY = "AQ.Ab8RN6IidIG29OU7m64U9MRi6UizSUki4f5fxPDCa2y_gxr8-w" 
+GOOGLE_API_KEY = "google_api_key_to_be_added" 
 
 @st.cache_data
 def load_context():
