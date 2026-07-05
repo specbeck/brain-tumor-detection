@@ -103,3 +103,5 @@ The repository includes a dedicated Streamlit web application that acts as an in
 2. Run the application from your terminal:
 ```bash
 streamlit run app.py
+```
+For the model to run properly an API key has to be edited under the variable 'GEMINI_API_KEY' which can be acquired from https://aistudio.google.com/api-keys.
